@@ -31,9 +31,13 @@ def fit_naive_bayes(observations, y, num_features):
         comment_class = y[comment_no]
         cond_prob_matrix[comment_class][feature_no] += 1
 
+    print("First step youhou")
+
     #divide each row of cond_prob_matrix by the count of comments per class
     for i in range(20):
         cond_prob_matrix[i] = np.true_divide(cond_prob_matrix[i], count_class[i])
+
+    print("Second step youhou")
 
 
     cond_prob_matrix = cond_prob_matrix.transpose()
