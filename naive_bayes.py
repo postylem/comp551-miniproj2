@@ -25,8 +25,8 @@ def fit_naive_bayes(observations, y, num_features):
     marg_prob = np.true_divide(count_class, total_comments)
 
     for i in range(observations.shape[0]):
-        feature_no = observations[i][0]
-        comment_no = observations[i][1]
+        feature_no = observations.nonzero()[1][i]
+        comment_no = observations.nonzero()[0][i]
        
         comment_class = y[comment_no]
         cond_prob_matrix[comment_class][feature_no] += 1
