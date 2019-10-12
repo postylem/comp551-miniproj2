@@ -2,8 +2,7 @@ import numpy as np
 import pandas as pd
 import math
 import time
-
-
+from scipy import sparse 
 
 def fit_naive_bayes(observations, y, num_features):
 
@@ -36,11 +35,30 @@ def fit_naive_bayes(observations, y, num_features):
     for i in range(20):
         cond_prob_matrix[i] = np.true_divide(cond_prob_matrix[i], count_class[i])
 
+
+    cond_prob_matrix = cond_prob_matrix.transpose()
+    marg_prob = np.log(marg_prob)
+
     return marg_prob, cond_prob_matrix
 
 def predict(observations, marg_prob, cond_prob_matrix):
 
+    #log of inverse conditional probability matrix
+    inv_cond_prob_matrix = np.ones(len(cond_prob_matrix), len(cond_prob_matrix[0]))
+    inv_cond_prob_matrix = inv_cond_prob_matrix - cond_prob_matrix
+    inv_cond_prob_matrix = csr_matrix(np.log(inv_cond_prob_matrix))
+
+    #log of conditional probability matrix
+    cond_prob_matrix = csr_matrix(np.log(cond_prob_matrix))
     
+    # 0s become 1s, 1s become 0s
+    sparse_ones = np.ones(observations.shape[0], observations.shape[1])
+    complement_obs = sparse_ones - observations
+
+    prob_per_class = np.dot(observations,cond_prob_matrix) + np.dot(complement_obs,inv_cond_prob_matrix)
+
+    for i in range(len(observations)):
+        
 
 
 def main():
