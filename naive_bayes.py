@@ -61,7 +61,7 @@ def predict(id_list, observations, marg_prob, cond_prob_matrix):
     for i in range(len(observations)):
         prob_per_class[i] += marg_prob
         y.append(np.argmax(prob_per_class[i]))
-        
+
     id_list = np.array(id_list)
 
     matrix = np.stack((id_list, y))
@@ -69,18 +69,15 @@ def predict(id_list, observations, marg_prob, cond_prob_matrix):
 
     return df_pred
 
-    
+# def main():
 
 
-def main():
-
-
-    marginal, conditional = fit_naive_bayes(observations, y, num_features)
+#     marginal, conditional = fit_naive_bayes(observations, y, num_features)
 
 
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
 
     
