@@ -18,7 +18,7 @@ def fit_naive_bayes(observations, y, num_features):
     total_comments = len(y)
     for i in range(20):
         for j in range(total_comments):
-            if y[j][1] == i:
+            if y[j] == i:
                 count_class[i] += 1
     
     #Marginal probability for each class
