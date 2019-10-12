@@ -31,13 +31,9 @@ def fit_naive_bayes(observations, y, num_features):
         comment_class = y[comment_no]
         cond_prob_matrix[comment_class][feature_no] += 1
 
-    print("First step youhou")
-
     #divide each row of cond_prob_matrix by the count of comments per class
     for i in range(20):
         cond_prob_matrix[i] = np.true_divide(cond_prob_matrix[i], count_class[i])
-
-    print("Second step youhou")
 
 
     cond_prob_matrix = cond_prob_matrix.transpose()
@@ -72,6 +68,21 @@ def predict(id_list, observations, marg_prob, cond_prob_matrix):
     df_pred = pd.DataFrame(matrix)
 
     return df_pred
+
+def accuracy(df_pred, df_true_y):
+
+    pred = np.array(df_pred[1])
+    true_y = np.array(df_true_y[1])
+
+    count = 0
+    total = len(y)
+    for i in range(total):
+        if pred[i] == true_y[i]:
+            count +=1
+            
+    return float(count)/total
+
+
 
 # def main():
 
