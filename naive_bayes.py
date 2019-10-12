@@ -41,7 +41,7 @@ def fit_naive_bayes(observations, y, num_features):
 
     return marg_prob, cond_prob_matrix
 
-def predict(observations, marg_prob, cond_prob_matrix):
+def predict(id_list, observations, marg_prob, cond_prob_matrix):
 
     #log of inverse conditional probability matrix
     inv_cond_prob_matrix = np.ones(len(cond_prob_matrix), len(cond_prob_matrix[0]))
@@ -52,13 +52,24 @@ def predict(observations, marg_prob, cond_prob_matrix):
     cond_prob_matrix = csr_matrix(np.log(cond_prob_matrix))
     
     # 0s become 1s, 1s become 0s
-    sparse_ones = np.ones(observations.shape[0], observations.shape[1])
+    sparse_ones = csr_matrix(np.ones(observations.shape[0], observations.shape[1]))
     complement_obs = sparse_ones - observations
 
     prob_per_class = np.dot(observations,cond_prob_matrix) + np.dot(complement_obs,inv_cond_prob_matrix)
 
+    y = []
     for i in range(len(observations)):
+        prob_per_class[i] += marg_prob
+        y.append(np.argmax(prob_per_class[i]))
         
+    id_list = np.array(id_list)
+
+    matrix = np.stack((id_list, y))
+    df_pred = pd.DataFrame(matrix)
+
+    return df_pred
+
+    
 
 
 def main():
