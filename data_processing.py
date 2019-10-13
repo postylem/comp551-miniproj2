@@ -23,28 +23,28 @@ def main(dictionary, stop_word_list):
     df['subreddits']= df['subreddits'].map(dictionary)
 
 
-    i = 1
-    #################################################################
-    # SELECT PARTICULAR CATEGORY OF COMMENTS
-    #################################################################
-    df = df.loc[df['subreddits'] == i]
+    for i in range(1,21):
+        #################################################################
+        # SELECT PARTICULAR CATEGORY OF COMMENTS
+        #################################################################
+        df = df.loc[df['subreddits'] == i]
 
 
-    #################################################################
-    # OUTPUT A NEW CSV OUT OF DATAFRAME
-    #################################################################
-    name = list(dictionary.keys())[list(dictionary.values()).index(i)]+'.csv'
-    df.to_csv(name, index=False, sep = ',')
+        #################################################################
+        # OUTPUT A NEW CSV OUT OF DATAFRAME
+        #################################################################
+        name = list(dictionary.keys())[list(dictionary.values()).index(i)]+'.csv'
+        df.to_csv(name, index=False, sep = ';')
 
 
     #################################################################
     # COUNT OCCURENCES OF EACH WORDS ACROSS ONE COLUMN OF DATAFRAME
     #################################################################
-    vectorizer = CountVectorizer(stop_words = stop_word_list)
-    vectors_train = vectorizer.fit_transform(df['comments'])
+    # vectorizer = CountVectorizer(stop_words = stop_word_list)
+    # vectors_train = vectorizer.fit_transform(df['comments'])
     # print(vectorizer.vocabulary_)
     # print(vectorizer.get_feature_names())
-    print(vectors_train.toarray()) 
+    # print(vectors_train.toarray()) 
 
     # vectors_train = vectorizer.transform(df['comments'])
     # print(vectors_train.shape)
