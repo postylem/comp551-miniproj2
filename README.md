@@ -1,23 +1,4 @@
 # comp551-miniproj2
+Group 27: Jacob Louis Hoover, Orla Mahoon, Lambert De Monte
 
-These are the 20 classes for our classification task:
-
-```
-anime, AskReddit, baseball, canada, conspiracy, europe, funny, gameofthrones, GlobalOffensive, hockey, leagueoflegends, movies, Music, nba, nfl, Overwatch, soccer, trees, worldnews, wow
-```
-
-Packages needed to run :
-
-- logging
-- pandas
-- numpy
-- matplotlib
-- nltk
-- re
-- bs4
-- sklearn
-- seaborn
-- scipy
-
-
-``` We should put instructions in here. ```
+Our best classifier model is set up to run in the jupyter notebook `best-model.ipynb`. That notebook contains the scripts to process the data, and make the predictions, using the best-performing model pipeline that we could find. No external files are necessary to replicate the prediction we uploaded to Kaggle (except external python libraries, such as pandas, numpy, nltk, etc).
