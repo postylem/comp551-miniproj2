@@ -1,0 +1,8 @@
+Model,Accuracy
+BernoulliNB,0.513742857
+MultinomialNB,0.561133333
+ComplementNB,0.567171429
+KNeighborsClassifier,0.48587619
+SGDClassifier,0.551942857
+LogisticRegression,0.535514286
+LinearSVC,0.555904762
